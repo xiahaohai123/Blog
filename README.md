@@ -1,2 +1,2 @@
 # blog
-The blog written by  owner: summersea
+The blog written by owner: summersea
