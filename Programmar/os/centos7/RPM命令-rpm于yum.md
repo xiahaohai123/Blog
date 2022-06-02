@@ -96,7 +96,7 @@ rpm -ql httpd　　　　　　　　　＃[搜索rpm包]--list所有文件安�
 rpm -qpi Linux-1.4-6.i368.rpm　＃[查看rpm包]--query--package--install package信息
 rpm -qpf Linux-1.4-6.i368.rpm　＃[查看rpm包]--file
 rpm -qpR file.rpm　　　　　　　＃[查看包]依赖关系
-rpm2cpio file.rpm |cpio -div    ＃[抽出文件]
+rpm2cpio file.rpm |cpio -div    ＃[抽出文件] 查看包解压后的安装路径
 
 rpm -ivh file.rpm 　＃[安装新的rpm]--install--verbose--hash
 rpm -ivh
