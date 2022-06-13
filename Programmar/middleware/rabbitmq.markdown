@@ -1,5 +1,5 @@
 
-# 在Java中，为什么client有了connection又设计了channel?
+## 在Java中，为什么client有了connection又设计了channel?
 简而言之: 分时复用。
 connection作为连接对象，以一种资源的立场存在于程序中。
 而channel可以基于connection对象上创建，以控制器的立场存在于程序中。
