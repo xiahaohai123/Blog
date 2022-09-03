@@ -114,20 +114,12 @@ Jenkins里面有个概念叫pipeline，即流水线，一个流水线内可以�
 7. 公司项目里面没有Jenkinsfile，这意味着我需要自己维护Jenkinsfile，与项目分离，这种情况下如何监测代码库的更新情况？
 
 
-### demo思路
+### 以实践落地一个demo来研究jenkins
 鉴于Jenkins的使用对我来说是全新的领域，与其过度思考，不如先完成一些可走通的demo来积累实践经验。通过这些经验，我或许可以发现更多、更好的解决方案。
 
-所以我决定先完成一个简单的demo来扩充实践经验，这个demo需要完成以下功能
-1. pipeline-build-rpm: 构建第一方rpm
-   1. 这个rpm包只需要参照公司已有的rpm构建方式进行构建。
-   2. 不要求对rpm包进行签名。
-   3. 完成至少两个管道。
-   4. 对对应的代码库具备监测更新并触发自动构建能力。
-2. pipeline-build-upgrade: 使用pipeline-build-rpm的产品组件出一个升级包
-   1. 不需要满足可回滚特特性。
-   2. 不需要满足增量升级特性。
-   3. 构建产品需要满足一键安装要求。
-3. 任意一条pipeline-build-rpm构建完成后需要触发pipeline-build-upgrade。
+所以我决定先完成一个简单的demo来扩充实践经验，demo相关的设计与实践不在这里详细赘述，可以通过以下链接去查看另一篇文档:
+[Jenkins自动化流水线demo的设计与实践](design_and_practice_of_jenkins_demo.md)
+
 
 
 
@@ -136,3 +128,5 @@ Jenkins里面有个概念叫pipeline，即流水线，一个流水线内可以�
 1. [What is CI/CD?](https://opensource.com/article/18/8/what-cicd)
 2. [什么是持续集成（CI）/持续部署（CD）？](https://zhuanlan.zhihu.com/p/42286143)
 3. [开始使用Jenkins](https://www.jenkins.io/zh/doc/pipeline/tour/getting-started/)
+4. [手动打包流程](./build_upgrade_package_manually.md)
+5. [Jenkins自动化流水线demo的设计与实践](design_and_practice_of_jenkins_demo.md)
