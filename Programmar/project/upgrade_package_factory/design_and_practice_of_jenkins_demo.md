@@ -24,7 +24,8 @@
 
 ## demo实践
 
-### 部署架构设计
+### 架构设计
+
 
 
 ### pipeline-build-rpm
@@ -55,3 +56,6 @@ A:
 
 1. [自动打升级包系统设计](./build_upgrade_package_automatically_design.md)
 2. [Jenkins 配置pipeline使用私域的gitlab出现 CAfile:none](../../CI&CD/Jenkins_add_repos_url_but_err_cafile_none.md)
+3. [如何画架构图](https://www.zhihu.com/question/27440059/answer/2082321229)
+4. [The C4 model for visualising software architecture](https://c4model.com)
+5. [用于软件架构的 C4 模型](https://www.infoq.cn/article/C4-architecture-model)
