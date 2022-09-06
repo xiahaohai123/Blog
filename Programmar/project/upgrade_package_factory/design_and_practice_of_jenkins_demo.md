@@ -26,7 +26,11 @@
 
 ### 架构设计
 
-
+根据C4模型，笔者设计了系统上下文与容器图。
+- 系统上下文
+  <img src="docImg/demo_architecture_system_context_diagram.png" width="400" alt="系统上下文架构图">
+- 容器图
+  <img src="docImg/demo_architecture_container_diagram.png" width="400" alt="容器图">
 
 ### pipeline-build-rpm
 
