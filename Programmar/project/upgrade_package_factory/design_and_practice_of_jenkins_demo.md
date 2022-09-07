@@ -31,6 +31,60 @@
   <img src="docImg/demo_architecture_system_context_diagram.png" width="400" alt="系统上下文架构图">
 - 容器图
   <img src="docImg/demo_architecture_container_diagram.png" width="400" alt="容器图">
+- 组件图——安装包构建器
+  <img src="docImg/demo_architecture_component_diagram_rpm_builder.png" width="400" alt="组件图——安装包构建器">
+
+### 通信交互设计
+#### 组件安装包构建应用
+
+1. 新增rpm构建任务
+    1. 请求接口
+      
+          |  url | method | 
+          |:-----:|:-----:|
+          | /rpm/build/task | POST |
+    2. 参数设计(JSON)
+   
+          |  key | valueType | required | description |
+          |:-----:|:-----:|:----:|:----:|
+          | project | string | true | 需要构建的项目名 |
+          | master | string | true | 需要构建的项目代码分支 |
+    3. 响应设计(JSON)
+     
+       |  key | valueType  | description |
+       |:-----:|:-----:|:----:|
+       | taskId | string | 新增任务的taskId，后续可以通过该id来查询任务状态以及结果 |
+    4. 样例
+          ```
+          POST /rpm/build/task 
+          
+          {
+              "project": "xxx-fileclient"
+              "branch": "master"
+          }
+          ```
+2. 查询rpm构建状态
+    1. 请求接口
+
+       |  url | method | 
+       |:-----:|:-----:|
+       | /rpm/build/task | GET |
+    2. 参数设计(Url Parameter)
+
+       |  key | valueType | required | description |
+       |:-----:|:-----:|:----:|:----:|
+       | taskId | string | true | 任务的taskId |
+    3. 响应设计(JSON)
+
+       |  key | valueType  | description |
+       |:-----:|:-----:|:----:|
+       | status | string(enum) | 任务状态，初步设计为排队中、执行中、已完成 |
+       | result.published_url | string | 安装包的发布地址，可通过GET该地址下载安装包，任务状态为已完成时会有该信息 |
+    4. 样例
+          ```
+          GET /rpm/build/task?taskId=cccc-eeee-vvvv-xxxx
+          ```
+
 
 ### pipeline-build-rpm
 
@@ -44,8 +98,9 @@ A:
 
 1. 选择2个项目，一个项目复杂度低（简称项目A），一个项目复杂度高（简称项目B）。
 2. 对项目A的rpm构建流程进行学习，仅需要搞清楚足以支持自动化的流程，不需要深入SPEC文件。
-3. 构建一个Jenkinsfile以完成rpm构建。
-4. 对Jenkinsfile稍加改造，让rpm包被放入某个仓库。
+3. 完成rpm构建流程
+
+
 
 ### pipeline-build-upgrade
 *建设中。。。*
