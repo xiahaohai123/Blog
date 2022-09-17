@@ -25,7 +25,7 @@ A：因为第一个demo的架构设计比较复杂，实现起来需要时间，
 |-d- degrade
    |-d- official
       |-d- rpm
-      |-d- script
+      |-d- script (deperecated in the future)
    |-d- lib
       |-d- rpm
    |-f- md5
