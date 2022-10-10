@@ -1,3 +1,5 @@
+## study
+
 1. [WebRTC中的ICE Candidate](https://zhuanlan.zhihu.com/p/476577799)
 2. [WebRTC技术简介](https://zhuanlan.zhihu.com/p/421503695)
 3. [Get started with WebRTC](https://web.dev/webrtc-basics/#toc-rtcdatachannel)
@@ -7,3 +9,7 @@
 7. [yetithefoot/stuns](https://gist.github.com/yetithefoot/7592580)
 8. [RobinLinus/snapdrop](https://github.com/RobinLinus/snapdrop)
 9. [Snapdrop](https://drop.ioiox.com/)
+
+## dev
+
+1. [Set-Cookie in websocket handshake](https://stackoverflow.com/questions/37083025/set-cookie-in-websocket-handshake)
