@@ -31,7 +31,7 @@ tags: Spring | Spring Security
 
 `Spring Security`让自己起效果的核心思路是**在业务执行之前，就把一切要做的安全措施全部噶彭一下都给做掉**，那么，做到这一点呢？或者说哪里适合这么做呢？诶~`Servlet`的`Filter责任链`就非常适合这件事，**在过滤器链结构中，只要`Spring Security`的过滤器在执行`Servlet`接口的业务代码之前被执行即可**。于是呢，`Spring Security`就自己实现了一个`Filter`，然后插进了`Servlet`的`Filter链`，接下来，`Servlet`执行`过滤器链(Filter Chain)`的时候就会自然而然地进入了`Spring Security`的逻辑。
 
-![image.png](http://summersea.top:8090/upload/2021/12/image-45095606c5564820a22756439e855234.png)
+![dep_core.png](doc_img/dep_core.png)
 
 
 
@@ -83,7 +83,8 @@ public DelegatingFilterProxy getFilter() {
 - 因为这是`Spring Security`，是基于`Spring`核心开发的一套框架（它需要`Spring`的优点），而`Servlet`的初始化要早于`Spring`上下文的初始化，如果在`Servlet`初始化阶段就去初始化`Spring Security`的`Filter`会找不到目标`Bean`。
 
 相信读者也从类名明白了`DelegatingFilterProxy`这个类的意图，就是桥接`Servlet`与`Spring`，**最终目标是让`Spring Security`能在`Spring`上下文中工作，又能从`Servlet`的过滤流程中收到触发过滤的信号。** 所以该类中有一个委托对象——`FilterChainProxy`，而这个类的实例，是一个`Spring`的`Bean`，如下图所示。
-![image.png](http://summersea.top:8090/upload/2021/12/image-cf3f0cfc7a764f9c87d30d161a60a32b.png)
+
+![DelegatingFilterProxy.png](doc_img/DelegatingFilterProxy.png)
 
 
 
@@ -101,9 +102,8 @@ public DelegatingFilterProxy getFilter() {
 
 
 
-![Spring Securityarchitecture.png](http://summersea.top:8090/upload/2021/12/Spring%20Security-architecture-d7991645c2ca4462bdbddaf43b050514.png)
 
-
+![Spring Securityarchitecture.png](Spring%20Securityarchitecture.png)
 
 
 
@@ -183,8 +183,7 @@ public void doFilter(ServletRequest request, ServletResponse response, FilterCha
 - `SecurityFilterChain`由`FilterChainProxy`持有，且可以持有多个
 - `SecurityFilterChain`支持匹配请求`url`，`FilterChainProxy`在获取`Filter`集合的时候会先匹配请求的`url`，如果匹配上了才会调用`SecurityFilterChain`的`getFilters()`方法`SecurityFilterChain`。
 
-![image.png](http://summersea.top:8090/upload/2021/12/image-6703971778c24e1ca2e779349d510897.png)
-
+![FilterChainProxy.png](doc_img/FilterChainProxy.png)
 
 
 
@@ -228,8 +227,7 @@ private List<Filter> getFilters(HttpServletRequest request) {
 - **值得注意的是，在该节点被调用前抛出的认证异常不会由此过滤器受理**。
 - 默认情况下，处理器会将用户引导至登录页，用户可以对处理器的行为进行配置。
 
-![image.png](http://summersea.top:8090/upload/2021/12/image-1fc0ca4cd1e14b4c924769a5832c3a9e.png)
-
+![ExceptionTranslationFilter.png](doc_img/ExceptionTranslationFilter.png)
 
 
 

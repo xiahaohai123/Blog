@@ -6,7 +6,7 @@
 ## 定义权限——GrantedAuthority
 
 上一章说道，核心数据结构中有一个`Authentication`类，我们并没有提及该类中的`Authorities`是什么。
-![image.png](http://summersea.top:8090/upload/2021/12/image-70818f653e5341abb799cafe479f8c50.png)
+![SecurityContextHolder.png](doc_img/SecurityContextHolder.png)
 
 
 
@@ -55,8 +55,7 @@ boolean supports(Class clazz);
 #### 基于投票机制的权限校验系统
 
 `AccessDecisionManager`虽然定位是权限校验器，但`Spring Security`实现它的思路用的是投票机制，所以我们可以看到`Spring Security`提供的几种实现类实际上都是**投票计数器，最终再根据一定规则给出最终的权限判定**。这里贴一张由`Spring`官方提供的`UML`图。
-![image.png](http://summersea.top:8090/upload/2021/12/image-10dc6319b5cc48508a26bc3e9cf15eaf.png)
-
+![AccessDecisionManager.png](doc_img/AccessDecisionManager.png)
 
 
 

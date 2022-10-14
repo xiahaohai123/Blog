@@ -35,8 +35,7 @@
 ### 登陆型过滤器
 
 鉴于大纲里写了`AbstractAthenticationProcessingFilter`给出了一个非常棒的案例，那么我们就以该`Filter`的入口为起点，一步一步向里面探寻。
-![image.png](http://summersea.top:8090/upload/2021/12/image-8fe386b86312446aa6afd6ea2e03f4bb.png)
-
+![AbstractAthenticationProcessingFilter.png](doc_img/AbstractAthenticationProcessingFilter.png)
 
 
 
@@ -132,7 +131,7 @@ private void doFilter(HttpServletRequest request, HttpServletResponse response, 
 这一组组件贯穿了整个认证流程。
 #### SecurityContextHolder
 `SecurityContextHolder`是认证模组的核心，其中包含着`SecurityContext`。`Spring Security`会将经过认证的用户信息存入这个组件，**也要求存入该组件的用户信息必须是经过认证的**，因为这个组件被使用时，`Spring Security`就会认为里面的用户信息就是经过认证的（**约定**）。
-![image.png](http://summersea.top:8090/upload/2021/12/image-70818f653e5341abb799cafe479f8c50.png)
+![SecurityContextHolder.png](doc_img/SecurityContextHolder.png)
 
 - 通常情况下，`SecurityContextHolder`使用`ThreadLocal`策略，因为后续业务和`Spring Security`处在同一个线程中，后续业务可以通过这个组件获取到正确的认证用户信息。
 - 策略可以配置，其他配置有：全局策略、子线程策略。
@@ -165,8 +164,7 @@ private void doFilter(HttpServletRequest request, HttpServletResponse response, 
 
 #### 身份认证管理器的最常用实现——ProviderManager
 `ProviderManager`维护了一个`AuthenticationProvider`集合，以责任链模式按顺序调用其的认证方法。
-![image.png](http://summersea.top:8090/upload/2021/12/image-a80ce2b1694d414ab6ad1fb05e09ab7f.png)
-
+![ProviderManager.png](doc_img/ProviderManager.png)
 
 
 
@@ -182,8 +180,7 @@ private void doFilter(HttpServletRequest request, HttpServletResponse response, 
 - 如果没有一个`AuthenticationProvider`受理`Authentication`则会抛出`ProviderNotFoundException`，该异常继承自`AuthenticationException`。
 
 `ProviderManager`可以配置父级的`AuthenticationManager`，当没有`AuthenticationProvider`受理认证信息的时候，`ProviderManager`会向上咨询。
-![image.png](http://summersea.top:8090/upload/2021/12/image-2dba8894740245d39bfd761a1b89f2f5.png)
-
+![ProviderManager_use_parent.png](doc_img/ProviderManager_use_parent.png)
 
 
 
