@@ -24,6 +24,9 @@
 
 之后笔者调大了客户端的超时时间，或禁用了`nginx`的请求体缓冲功能，两个方案都可以让文件传输成功。侧面证明了笔者的猜想基本正确。
 
+![缓存on.png](doc_img/proxy_request_buffering_4_upload_file-常见架构.drawio.png)
+
+
 ### 禁用缓冲请求体功能
 
 ```
@@ -41,6 +44,18 @@ This directive appeared in version 1.7.11.
 > When buffering is disabled, the request body is sent to the proxied server immediately as it is received. In this case, the request cannot be passed to the next server if nginx already started sending the request body.
 >
 > When HTTP/1.1 chunked transfer encoding is used to send the original request body, the request body will be buffered regardless of the directive value unless HTTP/1.1 is enabled for proxying.
+
+![proxy_request_buffering_on_or_off.png](doc_img/proxy_request_buffering_on_or_off.png)
+
+on表示nginx接收完完整的body后才和upstream建立连接，off则是先建立连接，然后发送请求的时，从下游读取body，同时往上游转发。默认情况下是on，即nginx先生成要发往上游的包体，然后才去和上游建立连接。
+
+这样做是为了不耽误时间，不占用较长时间连接。因为一边读一边转发的问题是，一般下游和nginx之间的网速较慢，而nginx和upstream的网速较快(内网)，这样边读边发会浪费很多时间。
+
+#### proxy_request_buffering on
+![缓存on.png](doc_img/proxy_request_buffering_4_upload_file-缓存on.drawio.png)
+
+#### proxy_request_buffering off
+![缓存on.png](doc_img/proxy_request_buffering_4_upload_file-缓存off.drawio.png)
 
 ### 无视客户端关闭连接
 
@@ -60,3 +75,4 @@ Context:	http, server, location
 1. [Module ngx_http_proxy_module](http://nginx.org/en/docs/http/ngx_http_proxy_module.html)
 2. [proxy_request_buffering](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)
 3. [proxy_ignore_client_abort](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ignore_client_abort)
+4. [Nginx处理请求体那点事](https://blog.csdn.net/qq_28165595/article/details/124567028)
