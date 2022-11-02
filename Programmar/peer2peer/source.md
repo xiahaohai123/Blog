@@ -22,3 +22,5 @@
 2. [ARP协议详解](https://blog.csdn.net/qq_45309500/article/details/124706346)
 3. [upnp是什么 upnp设置方法【详细介绍】](https://product.pconline.com.cn/itbk/wlbg/network/1709/9971661.html)
 4. [DLNA是什么？DLNA技术是什么？](https://product.pconline.com.cn/itbk/sjtx/sj/1110/2568189.html)
+5. [网络基础--UPnP基本原理](https://blog.csdn.net/jisuanji111111/article/details/122108226)
+5. [SSDP协议](https://blog.csdn.net/murongyeye/article/details/119574158)
