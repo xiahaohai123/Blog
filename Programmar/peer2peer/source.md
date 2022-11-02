@@ -19,4 +19,6 @@
 ## 其他相关文档
 
 1. [深入了解“网上邻居”原理](https://blog.csdn.net/zyw_anquan/article/details/9155491)
-1. [ARP协议详解](https://blog.csdn.net/qq_45309500/article/details/124706346)
+2. [ARP协议详解](https://blog.csdn.net/qq_45309500/article/details/124706346)
+3. [upnp是什么 upnp设置方法【详细介绍】](https://product.pconline.com.cn/itbk/wlbg/network/1709/9971661.html)
+4. [DLNA是什么？DLNA技术是什么？](https://product.pconline.com.cn/itbk/sjtx/sj/1110/2568189.html)
