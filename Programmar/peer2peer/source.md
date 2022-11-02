@@ -15,3 +15,8 @@
 ## dev
 
 1. [Set-Cookie in websocket handshake](https://stackoverflow.com/questions/37083025/set-cookie-in-websocket-handshake)
+
+## 其他相关文档
+
+1. [深入了解“网上邻居”原理](https://blog.csdn.net/zyw_anquan/article/details/9155491)
+1. [ARP协议详解](https://blog.csdn.net/qq_45309500/article/details/124706346)
