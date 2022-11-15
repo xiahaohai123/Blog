@@ -1,12 +1,3 @@
----
-title: java.net.SocketException: Permission denied的一种情况
-date: 2021-06-20 22:01:39.838
-updated: 2021-06-20 22:01:39.838
-url: http://summersea.top:8090/archives/javanetsocketexceptionpermissiondenied-de-yi-zhong-qing-kuang
-categories: 
-tags: Linux | 权限
----
-
 ### 背景
 在使用非root用户启动服务时，发现服务启动失败，但是使用root用户启动就可以成功启动。
 环境是CentOS 7。

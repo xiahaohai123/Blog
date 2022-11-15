@@ -1,12 +1,3 @@
----
-title: sun.misc.BASE64Encoder在jdk8之后不再工作，如何在程序设计上考虑兼容性？
-date: 2021-09-03 11:05:31.581
-updated: 2021-10-26 17:42:36.485
-url: http://summersea.top:8090/archives/sunmiscbase64encoder在jdk8之后不再工作如何在程序设计上提供兼容性考虑
-categories: 
-tags: Java
----
-
 ### 背景
 
 

@@ -1,12 +1,3 @@
----
-title: Mysql8 导出数据库并迁移
-date: 2021-06-20 16:18:30.755
-updated: 2021-06-20 16:53:52.15
-url: http://summersea.top:8090/archives/mysql8导出数据库并迁移
-categories: 
-tags: MySQL 8
----
-
 ### 参考文献
 [MySQL之mysqldump的使用](https://www.cnblogs.com/markLogZhu/p/11398028.html)
 

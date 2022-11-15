@@ -1,12 +1,3 @@
----
-title: CentOS7 编写服务
-date: 2021-06-18 20:58:35.149
-updated: 2021-06-20 21:12:12.432
-url: http://summersea.top:8090/archives/centos7编写服务
-categories: 
-tags: CentOS 7 | 服务
----
-
 在CentOS 7中，服务文件的存放位置为：
 - 系统服务，开机不需要登录就能运行的程序
 /usr/lib/systemd/system

@@ -1,12 +1,3 @@
----
-title: Android获取系统内其他应用的图标、名字
-date: 2021-04-04 18:33:51.526
-updated: 2021-04-04 18:35:49.073
-url: http://summersea.top:8090/archives/android-huo-qu-xi-tong-nei-qi-ta-ying-yong-de-tu-biao--ming-zi
-categories: 
-tags: 安卓 | android
----
-
 最近毕设想实现一个获取其他应用信息的功能，但是翻了很久网上的博客，也没翻出个所以然。
 哪天空闲的时候突然灵机一动，想起了v2rayNG的app不是有这个功能吗，直接上github找[v2rayNG](https://github.com/2dust/v2rayNG)的开源代码学习学习。
 
@@ -87,4 +78,5 @@ object AppManagerUtil {
     }
 ```
 最终配合其他代码可以看到效果：
-![QQ截图20210404183132.jpg](http://summersea.top:8090/upload/2021/04/QQ%E6%88%AA%E5%9B%BE20210404183132-e7442060d18d41e59d993355b5deeaab.jpg)
+
+![img.png](assets/screenshot_1.png)

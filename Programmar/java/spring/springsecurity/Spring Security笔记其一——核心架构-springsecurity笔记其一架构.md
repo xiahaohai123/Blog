@@ -1,13 +1,3 @@
----
-title: Spring Security笔记其一——核心架构
-date: 2021-12-26 13:49:20.022
-updated: 2021-12-28 14:54:48.317
-url: http://summersea.top:8090/archives/springsecurity笔记其一架构
-categories: 
-tags: Spring | Spring Security
----
-
-
 ## 参考资料
 [官方文献](https://docs.spring.io/spring-security/reference/index.html)
 

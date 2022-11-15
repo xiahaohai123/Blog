@@ -1,14 +1,6 @@
----
-title: CentOS7 服务方式启动java程序
-date: 2021-04-12 00:25:53.372
-updated: 2021-06-21 14:04:25.274
-url: http://summersea.top:8090/archives/centos7fu-wu-fang-shi-qi-dong-java-cheng-xu
-categories: 
-tags: Linux | 操作系统
----
-
 service文件一般存储在/etc/systemd/system目录下
-![image.png](http://summersea.top:8090/upload/2021/04/image-f1f7ef32fa1c41bd801f6156488263aa.png)
+
+![img.png](../assets/screenshot05.png)
 
 写一个自己的service
 ```sh

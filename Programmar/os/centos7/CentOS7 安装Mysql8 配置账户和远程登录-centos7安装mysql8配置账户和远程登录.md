@@ -1,12 +1,3 @@
----
-title: CentOS7 安装Mysql8 配置账户和远程登录
-date: 2021-06-20 13:58:03.889
-updated: 2021-06-20 15:41:51.142
-url: http://summersea.top:8090/archives/centos7安装mysql8配置账户和远程登录
-categories: 
-tags: CentOS 7 | MySQL 8
----
-
 ## 安装
 1. 进入自定义的rpm包下载路径。
 ```bash
@@ -20,13 +11,13 @@ $ wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
 ```bash
 # rpm -ivh mysql80-community-release-el7-3.noarch.rpm
 ``` 
-![image.png](http://summersea.top:8090/upload/2021/06/image-8fd059cb632a4fd88758d47199a3d30b.png)
+![img.png](../assets/screenshot01.png)
 
 4. 安装mysql-community-server。
 ```bash
 $ yum install mysql-community-server
 ```
-![image.png](http://summersea.top:8090/upload/2021/06/image-8810cd0734414aa8832759060a1e68fa.png)
+![img.png](../assets/screenshot02.png)
 
 &nbsp;
 ## 配置账户
@@ -42,7 +33,7 @@ $ systemctl start mysqld
 ```bash
 $ mysql -V
 ```
-![image.png](http://summersea.top:8090/upload/2021/06/image-861d3e96daec4ef38748e17262c3686d.png)
+![img.png](../assets/screenshot03.png)
 
 4. 修改密码。
 ```bash
@@ -77,6 +68,7 @@ $ mysql -u root -p
 ```
 
 尝试远程登录：
-![image.png](http://summersea.top:8090/upload/2021/06/image-34c5cca282c346c3a9d52b7076497829.png)
+
+![img.png](../assets/screenshot04.png)
 
 登录成功，从此可以使用此账户玩耍了。

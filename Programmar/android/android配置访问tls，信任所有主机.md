@@ -1,12 +1,3 @@
----
-title: android配置访问tls，信任所有主机
-date: 2021-04-18 14:47:54.348
-updated: 2021-04-18 14:47:54.348
-url: http://summersea.top:8090/archives/android-pei-zhi-fang-wen-tls-xin-ren-suo-you-zhu-ji
-categories: 
-tags: 安卓
----
-
 只需要配置客户端即可
 
 ```java

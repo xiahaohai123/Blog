@@ -1,15 +1,6 @@
----
-title: RPM命令
-date: 2021-06-21 14:37:22.444
-updated: 2021-06-21 16:02:16.276
-url: http://summersea.top:8090/archives/rpm于yum
-categories: 
-tags: CentOS 7 | RPM | RedHat
----
-
 # RPM
 RPM是RedHat Package Manager的缩写，Windows与之匹配的是“添加或删除程序”
-![image.png](http://summersea.top:8090/upload/2021/06/image-3e59fcb216554db28c96d92d9ea67306.png)
+![img.png](../assets/screenshot06.png)
 
 ## 1. RPM包管理的用途
 1. 可以安装、删除、升级和管理软件；当然也支持在线安装和升级软件；
@@ -67,7 +58,7 @@ d. 查询已安装软件包都安装到何处；
 ```bash
 $ rpm -ql mysql-community-server 
 ```
-![image.png](http://summersea.top:8090/upload/2021/06/image-88010340e28e49cfa2987db210a9f4b3.png)
+![img.png](../assets/screenshot07.png)
 
 **剩下的常用命令和参数详细转载**
 

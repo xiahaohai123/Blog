@@ -1,14 +1,3 @@
----
-title: java heap dump
-date: 2022-03-15 16:59:14.297
-updated: 2022-03-15 16:59:32.018
-url: http://summersea.top:8090/archives/javaheapdump
-categories: 
-tags: 
----
-
-
-
 # 背景
 
 工作中遭遇了现场出现`OOM`的问题，所以记录一下`OOM`问题的排查流程。

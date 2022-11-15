@@ -1,12 +1,3 @@
----
-title: Spring跨域问题处理
-date: 2021-11-19 17:57:48.441
-updated: 2021-11-19 17:57:48.441
-url: http://summersea.top:8090/archives/spring-kua-yu-wen-ti-chu-li
-categories: 
-tags: 互联网
----
-
 ### 参考资料
 [跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
 
@@ -31,6 +22,6 @@ tags: 互联网
 
 最终的解决办法是能下载文件时手动增加允许跨域的`header`。
 
-![企业微信截图_16373157761950.png](http://summersea.top:8090/upload/2021/11/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16373157761950-8df812005b574667a02aa5341ead3390.png)
+![img.png](../assets/screenshot03.png)
 
-![企业微信截图_16373158036201.png](http://summersea.top:8090/upload/2021/11/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16373158036201-26d411abaa584cada8b88fb795dc1424.png)
+![img.png](../assets/screenshot04.png)

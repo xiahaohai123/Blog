@@ -1,12 +1,3 @@
----
-title: CentOS 7 用户/用户组的添加与删除
-date: 2021-06-20 17:54:56.011
-updated: 2021-06-20 18:16:03.996
-url: http://summersea.top:8090/archives/centos7用户用户组的添加与删除
-categories: 
-tags: CentOS 7 | 用户管理
----
-
 **注意：要在root用户下使用**
 1. 新建用户 
 ```bash

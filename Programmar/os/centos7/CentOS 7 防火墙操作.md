@@ -1,12 +1,3 @@
----
-title: CentOS 7 防火墙操作
-date: 2021-04-02 17:51:18.426
-updated: 2021-08-10 10:12:46.666
-url: http://summersea.top:8090/archives/centos7fang-huo-qiang-cao-zuo
-categories: 
-tags: CentOS 7
----
-
 列出所有已开放端口：
 ```shell
 firewall-cmd --list-ports
