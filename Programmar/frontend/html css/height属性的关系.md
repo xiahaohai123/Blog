@@ -1,7 +1,7 @@
 
 ### 图解
 **注意，该图解仅为笔者的理解，非官方图解**
-![canvas_draw.png](../doc_img/canvas_draw.png)
+![canvas_draw.png](../assets/canvas_draw.png)
 基本可以理解为：
 1. canvas先根据行内属性的width（默认300）和height（默认150）的参数确定了坐标系范围。
 2. 前端使用context.fillRect(x,y,width,height)在坐标系上进行绘画（此处省略绘画前的准备步骤）。
