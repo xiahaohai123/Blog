@@ -93,3 +93,4 @@ fetch('/api/download')
 ## 参考文献
 
 1. [JS 实现流式打包下载](https://zhuanlan.zhihu.com/p/446145066)
+2. [使用 Service Workers](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers)
