@@ -8,7 +8,7 @@
 
 1. 在`Jenkins`上安装`Publish Over SSH`插件。
 2. 系统管理/系统配置/Publish over SSH配置服务器
-   ![img.png](docImg/publish_over_ssh_config.png)
+   ![img.png](../docImg/publish_over_ssh_config.png)
     1. 注意Remote Directory，为使用该插件传输时，在目标服务器上的工作空间，不配置的话会使用用户名的家目录作为工作空间，建议配置。
 3. 编写pipeline代码以支持发布。
     1. 其中`removePrefix`与`sourceFiles`配合使用，用来指定不应在远程服务器上创建的文件路径的第一部分。

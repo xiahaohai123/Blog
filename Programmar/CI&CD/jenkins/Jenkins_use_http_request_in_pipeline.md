@@ -69,7 +69,7 @@ Content: {
 如果我们的请求需要携带`Basic Auth`信息怎么办？
 
 1. 首先我们需要在Jenkins上配置一个凭据，使用`Username with password`的类型即可。
-    - ![new credentials.png](docImg/new_credentials.png)
+    - ![new credentials.png](../docImg/new_credentials.png)
 2. 配置完后我们可以得到这个凭据的`id`，在使用`httpRequest`发送请求时增加一个`authentication`字段，值就是凭据的`id`。
 3. 这样，发送请求就可以携带`Basic Auth`信息了。
 

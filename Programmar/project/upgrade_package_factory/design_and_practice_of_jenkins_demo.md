@@ -112,12 +112,12 @@ A:
 
 落地jenkins的demo时遭遇的某一些问题是值得记录的，每当遇到并解决一个有价值的问题，我会记录一份文档，在这里，我会列出这些文档的清单。
 
-1. [Jenkins 配置pipeline使用私域的gitlab出现 CAfile:none](../../CI&CD/Jenkins_add_repos_url_but_err_cafile_none.md)
+1. [Jenkins 配置pipeline使用私域的gitlab出现 CAfile:none](../../CI&CD/jenkins/Jenkins_add_repos_url_but_err_cafile_none.md)
 
 ## 参考文档
 
 1. [自动打升级包系统设计](./build_upgrade_package_automatically_design.md)
-2. [Jenkins 配置pipeline使用私域的gitlab出现 CAfile:none](../../CI&CD/Jenkins_add_repos_url_but_err_cafile_none.md)
+2. [Jenkins 配置pipeline使用私域的gitlab出现 CAfile:none](../../CI&CD/jenkins/Jenkins_add_repos_url_but_err_cafile_none.md)
 3. [如何画架构图](https://www.zhihu.com/question/27440059/answer/2082321229)
 4. [The C4 model for visualising software architecture](https://c4model.com)
 5. [用于软件架构的 C4 模型](https://www.infoq.cn/article/C4-architecture-model)
