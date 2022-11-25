@@ -64,6 +64,10 @@ sonarqube-check:
 
 最终效果为可以在项目目录下执行 gradle sonarqube 或 gradlew sonarqube，只要命令能成功执行即可，不需要启动分析。
 
+### Job 的成功与否
+
+Job 最终判断代码是否可以 merge 的标准来自于 SonarQube 的 Quality Gate。
+
 ## 参考文献
 
 1. [GitLab Integration](https://docs.sonarqube.org/8.9/analysis/gitlab-integration/)
