@@ -76,7 +76,7 @@ gradlew --stacktrace sonarqube -Dsonar.projectKey=java_demo  -Dsonar.host.url=ht
 
 出现了新问题
 
-> javax.net.ssl.SSLPeerUnverifiedException: Hostname sonar.shterm.com not verified:
+> javax.net.ssl.SSLPeerUnverifiedException: Hostname sonar.test.com not verified:
 
 网上查了下，原因是证书本身不太 OK。最终笔者选择不使用 SSL 来解决问题。
 
