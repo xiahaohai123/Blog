@@ -106,9 +106,9 @@
     2. `./sonar.sh status` 命令可以查看 SonarQube 的运行状态和进程号。
 3. 访问新版本 SonarQube 服务器的链接 `http://yourSonarQubeServerURL:9000/setup` 以完成服务器初始化
     1. 我们会发现该页面会让我们执行数据库迁移，所以一定要准备一下恢复手段，比如备份数据库，以防万一。
-       ![SonarQube-Database-migration.png](../docImg/SonarQube-Database-migration.png)
+       ![SonarQube-Database-migration.png](../assets/SonarQube-Database-migration.png)
     2. 迁移过程可以在 web.log 中查看。
-       ![SonarQube-Database-migration-log.png](../docImg/SonarQube-Database-migration-log.png)
+       ![SonarQube-Database-migration-log.png](../assets/SonarQube-Database-migration-log.png)
 4. 重新分析项目以获取最新的分析数据
 
 #### 插曲

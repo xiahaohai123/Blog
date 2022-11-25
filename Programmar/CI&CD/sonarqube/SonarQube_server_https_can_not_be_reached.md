@@ -43,13 +43,13 @@ gradlew --stacktrace sonarqube -Dsonar.projectKey=java_demo  -Dsonar.host.url=ht
 
 1. 首先进入到服务端的页面，查看证书
 
-   ![查看证书.png](../docImg/查看证书.png)
+   ![查看证书.png](../assets/查看证书.png)
 2. 将证书导出:
 
-   ![开始导出证书.png](../docImg/开始导出证书.png)
+   ![开始导出证书.png](../assets/开始导出证书.png)
 3. 选择编码:
 
-   ![选择编码.png](../docImg/选择编码.png)
+   ![选择编码.png](../assets/选择编码.png)
 
 4. 定义好文件名并点击下一步。
 5. 完成证书导出。

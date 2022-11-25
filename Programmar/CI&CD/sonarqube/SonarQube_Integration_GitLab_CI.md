@@ -33,7 +33,7 @@ GitLab 允许第三方应用接入，创建 OAuth app 来对接 SonarQube，详�
 
 1. SONAR_TOKEN，用以登录 SonarQube，值来自于 SonarQube 服务器。以路径`User > My Account > Security`进入 token 生成界面。
     1. 生成界面大致如图所示：
-       ![SonarQube 生成 token 界面.png](../docImg/SonarQube_生成_token_界面.png)
+       ![SonarQube 生成 token 界面.png](../assets/SonarQube_生成_token_界面.png)
 2. SONAR_HOST_URL，表示 SonarQube 服务器地址，例如`http://localhost:9000`
 
 ### 配置 gitlab-ci.yml 文件

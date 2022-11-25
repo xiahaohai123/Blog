@@ -15,7 +15,7 @@
 - `Password`: 在使用`Get`请求时可以使用登录Jenkins页面的密码，但是`Post`请求不行。
     - 一般来说，此时我们需要在Jenkins上申请一个token作为这里的密码。
     - 创建位置一般在用户的`Configure`页面，如图所示
-        - ![create api token.png](../docImg/create_api_token.png)
+        - ![create api token.png](../assets/create_api_token.png)
 
 ### 查找自己需要的API
 
@@ -23,11 +23,11 @@ Jenkins的api设计很有意思，是自动生成的。Jenkins的每一个页面
 
 例如，当我想要获取某个构建任务的构建api时，我会进入对应的构建页面，如下所示：
 
-![build_page.png](../docImg/build_page.png)
+![build_page.png](../assets/build_page.png)
 
 此时在地址栏最后加上`/api`即可直接看到所有可用api，我要找的api也在其中。
 
-![build_api_page.png](../docImg/build_api_page.png)
+![build_api_page.png](../assets/build_api_page.png)
 
 直接在对应超链接上右键复制链接即可拿到我想要的api请求接口。
 
