@@ -6,6 +6,12 @@ SonarQube 官方文档上说明了开发者可以在本地执行代码分析，S
 
 本地静态检查可以提高工程流水线效率，所以我们要试一下 SonarLint 连接 SonarQube Server，并看看最终效果如何。
 
+## SonarLint 连接 SonarQube 的好处
+
+1. 相较于使用没有连接模式的 SonarLint，连接 SonarQube 后的 SonarLint 会使用 SonarQube 上定义的**规则集**，规则集决定了分析工具是否会将一个问题识别为 BUG 或其他东西。
+2. 官方出于性能考虑，SonarLint 不会单独做污点分析，但是连接 SonarQube 后会启用该功能，完善代码分析。
+3. SonarQube 会在质量门发生变化时通过 SonarLint 通知开发者。
+
 ## 下载安装 SonarLint
 
 笔者使用的是 idea，所以可以去官方的插件市场下载 SonarLint 的插件安装包，当然，在线用户可以在 idea 里面直接打开插件市场并安装。
@@ -44,14 +50,14 @@ Tips: SonarLint 本身就有一定的代码分析能力，并且整套概念框�
    ![SonarQube-copy-token.png](../assets/SonarQube-copy-token.png)
 
 6. 填入 token 并执行下一步
-   
+
    ![SonarLint-input-token.png](../assets/SonarLint-input-token.png)
 
 7. 一路下一步到结束未知完成服务器配置。
 
    ![SonarLint-Configure-SonarQube-Notification.png](../assets/SonarLint-Configure-SonarQube-Notification.png)
    ![SonarLint-Configure-SonarQube-Completed.png](../assets/SonarLint-Configure-SonarQube-Completed.png)
-   
+
 8. 回到开始的配置页面，选择刚刚配置的连接，并选择自己项目的 Project key。
 
    ![SonarLint-Configure-Connection-And-ProjectKey.png](../assets/SonarLint-Configure-Connection-And-ProjectKey.png)
@@ -61,3 +67,4 @@ Tips: SonarLint 本身就有一定的代码分析能力，并且整套概念框�
 ## 参考文献
 
 1. [JetBrains-Marketplace-SonarLint](https://plugins.jetbrains.com/plugin/7973-sonarlint/versions)
+1. [SonarLint Connected Mode](https://docs.sonarqube.org/latest/user-guide/connected-mode/)
