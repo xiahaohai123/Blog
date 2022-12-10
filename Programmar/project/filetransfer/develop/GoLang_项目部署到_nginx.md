@@ -66,10 +66,47 @@ docker run -dp 8081:8081 <myname>/filetransfer:0.0.1-snapshot
 
 ### 配置 nginx.conf
 
-通过如下配置可以将流量转发到我们的后端应用上，只要发送数据到 file 下的接口上就可以。
+通过如下配置可以将流量转发到我们的后端应用上，只要发送数据到 api 下的接口上就可以。
 
 ```
-location /file {
-    proxy_pass http://127.0.0.1:8081;
+location /api/ {
+    proxy_pass http://127.0.0.1:8081/;
 }
 ```
+
+- **注意**这里 `/api/` 和 `http://127.0.0.1:8081/` 末尾要带斜杠，这样 Nginx 转发后的 uri 才能去掉字符串 `/api`。
+
+### 把请求转发到另一个容器里
+
+现在有一个大问题，Nginx 它在一个 docker 容器内，而我的后端应用在另一个容器内，Nginx 可不能通过 127.0.0.1 来转发请求到后端应用容器内。
+
+我们需要让 Nginx 能转发请求到另一个容器内。
+
+我们可以使用 docker-compose 来启动容器。写一个 docker-compose.yml:
+
+```yaml
+version: "3.8"
+
+services:
+  fileTransferBackEnd:
+    image: myname/filetransfer:0.0.1-snapshot
+    ports:
+      - 8081:8081
+```
+
+然后以 `docker-compose up` 命令启动容器。
+
+nginx.conf 配置中: `http://127.0.0.1:8081/` 修改为 ``http://fileTransferBackEnd:8081/`。
+
+#### 安装 `docker-compose`
+
+[https://github.com/docker/compose/releases/](https://github.com/docker/compose/releases/) 下有工具的发布信息。
+
+我们可以在自己的服务器上执行 `uname -s` 和 `uname -m` 获取操作系统和架构信息，来选择 `docker-compose` 的类型。
+
+将工具下载到服务器上,保存为 `/usr/local/bin/docker-compose` 以保证这个工具可以在任意目录中被调用，注意赋予权限。
+
+运行 `docker-compose version` 可以查看版本号，以及验证安装是否成功。
+
+之后使用命令 `docker-compose up -d` 以启动容器，并让容器在后台工作。  
+
