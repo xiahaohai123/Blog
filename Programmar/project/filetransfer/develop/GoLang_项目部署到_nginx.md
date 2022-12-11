@@ -30,21 +30,21 @@
 
 问题解决后为了加快构建速度，可以删除辅助用的命令:
 
-- `docker build -f .\docker\Dockerfile -t filetransfer:0.0.1-snapshot .`
+- `docker build -f .\docker\Dockerfile -t filetransfer .`
 
 ### 镜像上传与更新
 
 首先使用 `docker tag` 命令为镜像打上标签。
 
-- `docker tag filetransfer:0.0.1-snapshot <myname>/filetransfer:0.0.1-snapshot`
+- `docker tag filetransfer <myname>/filetransfer`
 
 我们也可以在构建阶段直接指定产品的 tag，这么做后做自动化时会简化一个步骤。
 
-- `docker build -f .\docker\Dockerfile -t <myname>/filetransfer:0.0.1-snapshot .`
+- `docker build -f .\docker\Dockerfile -t <myname>/filetransfer .`
 
 使用 `docker push` 命令将镜像推送到 Docker Hub。
 
-- `docker push <myname>/filetransfer:0.0.1-snapshot`
+- `docker push <myname>/filetransfer`
 
 这样笔者的镜像就推送到 Docker Hub 上去了，服务器只需要使用 docker pull 和 docker run 命令即可启动镜像。
 
@@ -60,8 +60,8 @@
 这个项目是前后端分离部署的，我们仅需要在服务器上拉取刚刚上传的镜像然后跑起来即可。
 
 ```shell
-docker pull <myname>/filetransfer:0.0.1-snapshot
-docker run -dp 8081:8081 <myname>/filetransfer:0.0.1-snapshot
+docker pull <myname>/filetransfer
+docker run -dp 8081:8081 <myname>/filetransfer
 ```
 
 ### 配置 nginx.conf
@@ -82,31 +82,27 @@ location /api/ {
 
 我们需要让 Nginx 能转发请求到另一个容器内。
 
-我们可以使用 docker-compose 来启动容器。写一个 docker-compose.yml:
+Docker 官方提供了一个叫做 Docker 网络的东西来满足不同容器之间的通信问题。
 
-```yaml
-version: "3.8"
+#### 创建并连接 Docker 网络
 
-services:
-  fileTransferBackEnd:
-    image: myname/filetransfer:0.0.1-snapshot
-    ports:
-      - 8081:8081
+```bash
+# 创建一个名为 "containerNetwork" 的 Docker 网络
+$ docker network create containerNetwork
+
+# 将容器 "some-nginx" 和 "fileTransferBackEnd" 连接到 "containerNetwork" 网络上
+$ docker network connect containerNetwork some-nginx
+$ docker network connect containerNetwork fileTransferBackEnd
 ```
 
-然后以 `docker-compose up` 命令启动容器。
+#### Nginx 配置变更
 
-nginx.conf 配置中: `http://127.0.0.1:8081/` 修改为 ``http://fileTransferBackEnd:8081/`。
+变更 nginx.conf 文件，将 IP 更改为容器名。
 
-#### 安装 `docker-compose`
+```
+location /api/ {
+    proxy_pass http://fileTransferBackEnd:8081/;
+}
+```
 
-[https://github.com/docker/compose/releases/](https://github.com/docker/compose/releases/) 下有工具的发布信息。
-
-我们可以在自己的服务器上执行 `uname -s` 和 `uname -m` 获取操作系统和架构信息，来选择 `docker-compose` 的类型。
-
-将工具下载到服务器上,保存为 `/usr/local/bin/docker-compose` 以保证这个工具可以在任意目录中被调用，注意赋予权限。
-
-运行 `docker-compose version` 可以查看版本号，以及验证安装是否成功。
-
-之后使用命令 `docker-compose up -d` 以启动容器，并让容器在后台工作。  
-
+至此，项目部署成功。
