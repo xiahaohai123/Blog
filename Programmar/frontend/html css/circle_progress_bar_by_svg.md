@@ -14,8 +14,8 @@ svg 的方案与其他我见到的方案存在的不同点在于，svg 是从 0 
 
 ## 参考文献
 
-1. [SVG 路径动画](https://www.jianshu.com/p/73dd45f04779)
-2. [SVG路径动画](https://blog.csdn.net/weixin_43866528/article/details/120224383)
+1. [SVG 路径动画-圆形高光进度条](https://www.jianshu.com/p/73dd45f04779)
+2. [SVG 路径动画](https://blog.csdn.net/weixin_43866528/article/details/120224383)
 3. [SVG 教程-菜鸟教程](https://www.runoob.com/svg/svg-tutorial.html)
 4. [SVG 路径-菜鸟教程](https://www.runoob.com/svg/svg-path.html)
 5. [SVG：可缩放矢量图形-MDN](https://developer.mozilla.org/zh-CN/docs/Web/SVG)
