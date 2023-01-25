@@ -75,7 +75,7 @@ function showReview() {
     const data = JSON.parse(dataStr);
     const reviewData = data.review;
     const reviewOutput = reviewData.map(
-      (count, index) => `第${index}篇文章的阅读量是${count}`
+        (count, index) => `第${index}篇文章的阅读量是${count}`
     ).join(',');
     console.log(reviewOutput);
 }
@@ -102,7 +102,6 @@ const storageIO = new IO(readFromStorage);
 
 接下来我们把后续的一系列数据处理都声明成函数，并通过 `map` 方法调用组织起来
 
-
 ```javascript
 // 解析 JSON
 const parseJSON = string => JSON.parse(string);
@@ -112,14 +111,14 @@ const getReviewProp = data => data.review;
 
 // 把 review 字段拼装成字符串
 const mapReview = reviewData => reviewData.map(
-  (count, index) => `第${index}篇文章的阅读量是${count}`
+    (count, index) => `第${index}篇文章的阅读量是${count}`
 ).join(',');
 
 // 组合上面的这些函数，得到新的 Monad
 const task = storageIO
-  .map(parseJSON)
-  .map(getReviewProp)
-  .map(mapReview)
+    .map(parseJSON)
+    .map(getReviewProp)
+    .map(mapReview)
 ```
 
 上面我们得到的 `task` 同样是一个包含了「动作」而不是「结果」的 Monad，它把一系列动作组合起来：`parse` -> `getReviewProps` -> `mapReview`。
@@ -133,42 +132,62 @@ task.fork(writeToConsole);
 
 `fork` 方法就好比扣动了板机，把我们早已在脑海里想好的一系列动作一股脑打了出去。与最初的 `showReview` 函数不同的是，在这之前我们已经推敲了每一个动作（中间步骤的纯函数），保证它们准确无误。所以如果出现问题，就可以断定是在 `readFromStorage` 或者 `writeToConsole` 中出现的了。
 
-这就是 IO Monad 用法的一个简单的例子。
+这就是 IO Monad 用法的一个简单的例子。当然之所以被称为 Monad，肯定少不了 `chain` 方法：
+
+### chain
+
+我们还是以从 `localStorage` 读取数据为例，先定义一个可以根据输入的 key 返回包裹了读取这个 key 的存储值的 `IO` 的函数：
+
+```javascript
+const readByKey = key => new IO(() => localStorage.getItem(key));
+```
+
+以此为基础，就可以通过第一个 key 读取数据，根据读到的数据获得第二个 key，然后借助 `chain` 方法读取第二个值并返回：
+
+```javascript
+const task = readByKey('firstKey') // 通过第一个 key 读取存储
+    .map(parseJSON)
+    .map(v => v.key) // 获取第二个 key
+    .chain(readByKey) // 通过第二个 key 读取存储
+    .map(parseJSON)
+```
+
+一切的副作用都被控制在 `readByKey` 这个函数中，使得错误易于定位。
 
 ### IO Monad 函子实现
 
-```javascript
+```typescript
 function compose<T, U>(f: (x: T) => U, g: () => T) {
-  return () => f(g());
+    return () => f(g());
 }
 
 function join<T>(io: IO<T>): () => T {
-  return io.effect();
+    return io.effect();
 }
 
 export class IO<T> {
-  static of<T>(x: T) {
-    return new IO(() => x);
-  }
+    static of<T>(x: T) {
+        return new IO(() => x);
+    }
 
-  effect: () => T;
+    effect: () => T;
 
-  constructor(effect: () => T) {
-    this.effect = effect;
-  }
+    constructor(effect: () => T) {
+        this.effect = effect;
+    }
 
-  map<U>(f: (x: T) => U) {
-    return new IO(compose(f, this.effect));
-  }
+    map<U>(f: (x: T) => U) {
+        return new IO(compose(f, this.effect));
+    }
 
-  chain<U>(f: (x: T) => IO<U>) {
-    const g = compose(f, this.effect);
-    return new IO(compose(join, g));
-  }
+    chain<U>(f: (x: T) => IO<U>) {
+        const g = compose(f, this.effect);
+        return new IO(compose(join, g));
+    }
 
-  fork(callback: (x: T) => void) {
-    callback(this.effect());
-  }
+    fork(callback: (x: T) => void) {
+        callback(this.effect());
+    }
 }
 ```
 
@@ -181,6 +200,16 @@ export class IO<T> {
 1. 纯函数在接收确定的输入后一定会产生恒定不变的输出。
 2. 所以纯函数部分一定已经适配了业务了。
 3. 如果是纯函数有问题那就意味着测试不行。
+
+## 如何理解 IO Monad 代码?
+
+### map 方法的本质
+
+IO Monad 自己本身是函子，其工作原理来自一个理论，**纯函数可以合并**。所以 `map` 方法的本质就是函数合并，将一个函子内的纯函数取出来与新的纯函数合并，构造出一个新的函子，直到最终有某个外部调用将这个函子打开了，也就是执行了。
+
+### chain 方法的本质
+
+与 `map` 方法不同， `chain` 方法传入的函数在执行后会返回一个函子，合并后的函数最终会响应一个函子，函子一般是不作为参数传入到下一个纯函数中的，所以 `chain` 函数中多了一个组合纯函数 `join` 步骤，即增加一个打开这个函子的步骤。
 
 ## 参考资料
 
