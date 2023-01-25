@@ -135,6 +135,43 @@ task.fork(writeToConsole);
 
 这就是 IO Monad 用法的一个简单的例子。
 
+### IO Monad 函子实现
+
+```javascript
+function compose<T, U>(f: (x: T) => U, g: () => T) {
+  return () => f(g());
+}
+
+function join<T>(io: IO<T>): () => T {
+  return io.effect();
+}
+
+export class IO<T> {
+  static of<T>(x: T) {
+    return new IO(() => x);
+  }
+
+  effect: () => T;
+
+  constructor(effect: () => T) {
+    this.effect = effect;
+  }
+
+  map<U>(f: (x: T) => U) {
+    return new IO(compose(f, this.effect));
+  }
+
+  chain<U>(f: (x: T) => IO<U>) {
+    const g = compose(f, this.effect);
+    return new IO(compose(join, g));
+  }
+
+  fork(callback: (x: T) => void) {
+    callback(this.effect());
+  }
+}
+```
+
 ## 为什么要分离纯函数与脏函数
 
 在正常的生产环境中，纯函数是不可能出错的，所以定位的时候不需要管纯函数，直接看脏函数里面哪里出问题了就好，大大加快定位速度。
