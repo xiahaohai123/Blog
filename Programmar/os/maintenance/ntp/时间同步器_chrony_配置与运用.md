@@ -95,8 +95,8 @@ chronyc help
 chronyc sources -v
 ```
 
-![chronyc_sources.png](../assets/chronyc_sources.png)
-![chronyc_sources_v.png](../assets/chronyc_sources_v.png)
+![chronyc_sources.png](../../assets/chronyc_sources.png)
+![chronyc_sources_v.png](../../assets/chronyc_sources_v.png)
 
 强制同步系统时钟
 
