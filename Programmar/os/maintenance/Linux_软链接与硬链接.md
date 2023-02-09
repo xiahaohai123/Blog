@@ -8,7 +8,7 @@ Linux 中，元数据中的 inode 号（inode 是文件元数据的一部分但�
 号即索引节点号）才是文件的唯一标识而非文件名。文件名仅是为了方便人们的记忆和使用，系统或程序通过 inode
 号寻找正确的文件数据块。如下图展示了程序通过文件名获取文件内容的过程。
 
-![寻找文件数据.png](寻找文件数据.png)
+![寻找文件数据.png](../assets/寻找文件数据.png)
 
 ## 2. 软链接与硬链接
 
@@ -46,7 +46,7 @@ ln oldfile newfile
 软链接与硬链接不同，若文件用户数据块中存放的内容是另一个文件的路径名的指向（类似指针），则该文件就是软连接。软链接就是一个普通文件，只是数据块内容有点特殊。软链接有着自己的
 inode 号以及用户数据块（见 图.）。因此软链接的创建与使用没有类似硬链接的诸多限制：
 
-![软链接寻找文件数据.png](软链接寻找文件数据.png)
+![软链接寻找文件数据.png](../assets/软链接寻找文件数据.png)
 
 - 软链接的权限虽然是对所属者 所属组 其他人的执行权限都是rwx。但是最终该软连接的执行权限取决于源文件的权限。
 - 可对不存在的文件或目录创建软链接；
@@ -90,14 +90,14 @@ Linux VFS 存在四个基本对象：
 /dev/input/event5 中，其存在四个目录项对象：/ 、dev/ 、input/ 及 event5。文件对象代表由进程打开的文件。这四个对象与进程及磁盘文件间的关系如下所示，其中
 d_inode 即为硬链接。为文件路径的快速解析，Linux VFS 设计了目录项缓存（Directory Entry Cache，即 dcache）。
 
-![进程-VFS四对象-磁盘关系.png](进程-VFS四对象-磁盘关系.png)
+![进程-VFS四对象-磁盘关系.png](../assets/进程-VFS四对象-磁盘关系.png)
 
 ## 4. Linux 文件系统中的 inode
 
 在 Linux 中，索引节点结构存在于系统内存及磁盘，其可区分成 VFS inode 与实际文件系统的 inode。VFS inode 作为实际文件系统中
 inode 的抽象，定义了结构体 inode 与其相关的操作 inode_operations（见内核源码 include/linux/fs.h）。
 
-![VFS中的inode与inode_operations结构体.png](../maintenance/VFS中的inode与inode_operations结构体.png)
+![VFS中的inode与inode_operations结构体.png](../assets/VFS中的inode与inode_operations结构体.png)
 
 每个文件存在两个计数器：i_count 与 i_nlink，即引用计数与硬链接计数。结构体 inode 中的 i_count 用于跟踪文件被访问的数量，而
 i_nlink 则是上述使用 ls -l 等命令查看到的文件硬链接数。或者说 i_count 跟踪文件在内存中的情况，而 i_nlink 则是磁盘计数器。当文件被删除时，则
