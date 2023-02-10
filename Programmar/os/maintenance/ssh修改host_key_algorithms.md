@@ -2,14 +2,14 @@
 
 为了模拟某个环境的host key环境，需要对server的hostkey进行修改，使用命令`ssh -vvv root@ip`，使用debug模式连接来确定目标机器支持的主机密钥算法:
 
-![img.png](assets/screenshot06.png)
+![img.png](../assets/screenshot14.png)
 
 ## sshd_config 中的相关配置
 
 1. 登录服务端，进入目录`/etc/ssh/`，`vim`打开`sshd_config`文件。
 2. 可以找到如下图的字段，这里决定了上图显示的`host key algorithms`。
 
-   ![img.png](assets/screenshot07.png)
+   ![img.png](../assets/screenshot15.png)
    
 3. 按上图的配置方式，还需要添加`rsa-sha2-512`，`rsa-sha2-256`两种`host key`。
 
@@ -19,11 +19,11 @@
 `ssh -o HostKeyAlgorithms=ecdsa-sha2-nistp256 root@1.1.1.1`
 这一条命令会让本地使用ssh连接目标机器，而连接途中的主机密钥算法被指定为`ecdsa-sha2-nistp256`。如果目标机器支持该算法，则会弹出输入密码的信息:
 
-![img.png](assets/screenshot08.png)
+![img.png](../assets/screenshot16.png)
 
 反之若不支持该算法，则会显示目标机器所支持的算法，相较于`ssh -vvv`的方式，该命令显示的信息比较集中，容易阅读:
 
-![img.png](assets/screenshot09.png)
+![img.png](../assets/screenshot09.png)
 
 ## 添加操作
 
@@ -61,6 +61,6 @@ HostKey /etc/ssh/ssh_host_rsa-sha2-512_key
 
 - 需要注意的是，`HostKey`字段和`HostKeyAlgorithm`字段不能出现冲突，比如`HostKey`字段配置的密钥文件需要`ssh-rsa`算法，而`HostKeyAlgorithms`
   字段却不支持该算法，<font color=red>**最终会导致ssh服务挂掉**</font>，比较严重。
-- ![img.png](assets/screenshot10.png)
+- ![img.png](../assets/screenshot18.png)
 - 所以对ssh配置进行操作的时候，尽量先开启`telnet`服务，保证有备用的远程操作手段。
 - 另外，可以只配置`HostKeyAlgorithms`字段而不配置`HostKey`字段，这样Host Key算法就能随意配置了。
