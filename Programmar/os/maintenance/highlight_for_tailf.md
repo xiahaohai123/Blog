@@ -53,6 +53,14 @@ tail -f catalina.out | perl -pe 's/(DEBUG)|(INFO)|(ERROR)/\e[1;34m$1\e[0m\e[1;33
 [1;33m 红底黄字，高亮加粗显示
 [1;41;33m
 
+## 注意
+
+该命令仅针对标准输出流有效，如果需要高亮错误输出流，需要将错误输出流重定向到标准输出流，比如:
+
+```shell
+ssh -vvv 10.10.10.10 2>&1 | perl -pe 's/(peer)|(host key)|(ERROR)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/g' 
+```
+
 ## 参考引用
 
 1. [Linux基础命令之tail动态显示日志文件时关键字有颜色、高亮显示](https://blog.csdn.net/Soinice/article/details/96284534)
