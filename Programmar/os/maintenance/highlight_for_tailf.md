@@ -61,6 +61,12 @@ tail -f catalina.out | perl -pe 's/(DEBUG)|(INFO)|(ERROR)/\e[1;34m$1\e[0m\e[1;33
 ssh -vvv 10.10.10.10 2>&1 | perl -pe 's/(peer)|(host key)|(ERROR)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/g' 
 ```
 
+当然也可以直接把两个输出流都扔进管道里
+
+```shell
+ssh -vvv 10.10.10.10 |& perl -pe 's/(peer)|(host key)|(ERROR)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/g'
+```
+
 ## 参考引用
 
 1. [Linux基础命令之tail动态显示日志文件时关键字有颜色、高亮显示](https://blog.csdn.net/Soinice/article/details/96284534)
