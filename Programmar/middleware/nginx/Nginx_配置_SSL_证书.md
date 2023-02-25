@@ -1,5 +1,9 @@
 # Nginx 配置 SSL 证书
 
+## 关键字
+
+TLS, SSL, Cert, HTTPS
+
 ## 前言
 
 之前自己的项目部署到服务器上了，但是前端使用了 Service Worker 技术，这要求网站连接必须是 HTTPS。
@@ -120,11 +124,13 @@ $ certbot certonly --standalone
 >
 > Key is saved at: /etc/letsencrypt/live/domain/privkey.pem
 
+如果不想在默认目录使用证书，把证书搬到我们要使用的目录即可。
+
 
 ##### 更新证书
 
 ```bash
-$ certbot renew --dry run
+$ certbot renew
 ```
 
 ## SSL 证书配置
@@ -142,6 +148,12 @@ server {
 删除 nginx 容器，以新命令启动，注意映射 443 端口。
 
 大功告成。
+
+## 获取证书有效期
+
+```shell
+certbot certificates
+```
 
 ## 参考文献
 
