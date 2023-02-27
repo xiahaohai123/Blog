@@ -75,5 +75,30 @@ HostKey /etc/ssh/ssh_host_rsa-sha2-512_key
 - 需要注意的是，`HostKey`字段和`HostKeyAlgorithm`字段不能出现冲突，比如`HostKey`字段配置的密钥文件需要`ssh-rsa`算法，而`HostKeyAlgorithms`
   字段却不支持该算法，<font color=red>**最终会导致ssh服务挂掉**</font>，比较严重。
 - ![img.png](../../assets/screenshot18.png)
+- ```shell
+  HostKeyAlgorithms rsa-sha2-512,rsa-sha2-256,ssh-ed25519  
+  ```
 - 所以对ssh配置进行操作的时候，尽量先开启`telnet`服务，保证有备用的远程操作手段。
 - 另外，可以只配置`HostKeyAlgorithms`字段而不配置`HostKey`字段，这样Host Key算法就能随意配置了。
+
+## 算法组切割
+
+有时候我们会遇到一个问题，ssh-rsa rsa-sha2-512 rsa-sha2-512 三个算法分不开，我们可以使用以下方案分离这些算法。
+
+假设我们只需要 rsa-sha2-512 算法
+
+1. 注释所有的 HostKey 行（疑似注释干净后会在 /etc/ssh/ 目录中自由选择默认 key）
+2. HostKeyAlgorithms 行指定 rsa-sha2-512 算法
+
+## ecdsa 系列算法设置
+
+一般默认情况下，openssh 的库内内置的 host key ecdsa 位数为 256，展示出来就是 ecdsa-sha2-nistp256。
+
+我们要用 384 位和 521 位该怎么办呢？
+
+1. 在库目录内生成对应位数的 host key
+    1. `ssh-keygen -t ecdsa -b 521 -f /etc/ssh/ssh_host_ecdsa521_key`
+    2. 其中 -b 后面指定位数
+2. 在 /etc/ssh/sshd_config 中指定对应的 host key，其他都注释
+
+然后我们就会发现 server 仅支持 ecdsa-sha2-nistp521 算法了。
