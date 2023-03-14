@@ -83,7 +83,7 @@ HostKey /etc/ssh/ssh_host_rsa-sha2-512_key
 
 ## 算法组切割
 
-有时候我们会遇到一个问题，ssh-rsa rsa-sha2-512 rsa-sha2-512 三个算法分不开，我们可以使用以下方案分离这些算法。
+有时候我们会遇到一个问题，`ssh-rsa` `rsa-sha2-256` `rsa-sha2-512` 三个算法分不开，我们可以使用以下方案分离这些算法。
 
 假设我们只需要 rsa-sha2-512 算法
 
