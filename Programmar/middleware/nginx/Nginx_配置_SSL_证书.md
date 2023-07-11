@@ -106,7 +106,9 @@ $ sh acme.sh --issue --standalone -d mydomain.com -d www.mydomain.com --httpport
 
 ##### 注册证书
 
-```bash
+- centos
+
+```shell
 $ yum install snapd
 $ systemctl start snapd
 $ snap install core
@@ -115,6 +117,21 @@ $ snap install --classic certbot
 $ ln -s /snap/bin/certbot /usr/bin/certbot
 $ certbot certonly --standalone
 ```
+
+- ubuntu
+
+```shell
+apt install snapd
+systemctl start snapd
+snap install core
+snap refresh core
+apt-get remove certbot
+snap install --classic certbot
+ln -s /snap/bin/certbot /usr/bin/certbot
+certbot certonly --standalone
+```
+
+命令 `certbot certonly --standalone` 会注册证书，后续 `certbot renew --dry-run` 命令会根据该注册信息更新
 
 之后就是照着提示一步一步操作下去，这个方法需要关闭 web 服务器一段时间，因为需要监听 80 端口。
 
