@@ -10,10 +10,12 @@
     cd .ssh
     ```
 3. 创建 ssh keys，不同密钥对用后缀区分，输入后弹出提示需要输入时，一直回车，不用输入。
+    - _创建 gitee 用的密钥对_
     ```shell
-    # 创建 gitee 用的密钥对 
     ssh-keygen -t rsa -f ~/.ssh/id_rsa.gitee -C "自己的邮箱@qq.com"
-    # 创建 github 用的密钥对
+    ```
+    - _创建 github 用的密钥对_
+    ```shell
     ssh-keygen -t rsa -f ~/.ssh/id_rsa.github -C "自己的邮箱@qq.com"
     ```
    此时会在 `C:\Users\电脑登录用户名\.ssh` 下生成对应的密钥对
@@ -78,7 +80,12 @@
    ssh -T git@gitee.com
    ```
    ![登录测试](assets/gitee测试ssh登录.png)
-   如果提示 `Are you sure you want to continue connecting (yes/no/[fingerprint])?`，就手动打一个 `yes` 然后回车，出现这个提示的原因是你第一次用 `SSH` 协议连接目标主机，提示你是否信任该主机。
+   如果提示 `Are you sure you want to continue connecting (yes/no/[fingerprint])?`，就手动打一个 `yes`
+   然后回车，出现这个提示的原因是你第一次用 `SSH` 协议连接目标主机，提示你是否信任该主机。
+
+## Mac
+
+同 Windows
 
 ## 其他
 
