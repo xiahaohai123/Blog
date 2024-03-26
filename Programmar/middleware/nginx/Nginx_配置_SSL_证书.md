@@ -109,13 +109,13 @@ $ sh acme.sh --issue --standalone -d mydomain.com -d www.mydomain.com --httpport
 - centos
 
 ```shell
-$ yum install snapd
-$ systemctl start snapd
-$ snap install core
-$ ln -s /var/lib/snapd/snap /snap
-$ snap install --classic certbot
-$ ln -s /snap/bin/certbot /usr/bin/certbot
-$ certbot certonly --standalone
+yum install snapd
+systemctl start snapd
+snap install core
+ln -s /var/lib/snapd/snap /snap
+snap install --classic certbot
+ln -s /snap/bin/certbot /usr/bin/certbot
+certbot certonly --standalone
 ```
 
 - ubuntu
@@ -131,7 +131,9 @@ ln -s /snap/bin/certbot /usr/bin/certbot
 certbot certonly --standalone
 ```
 
-命令 `certbot certonly --standalone` 会注册证书，后续 `certbot renew --dry-run` 命令会根据该注册信息更新
+命令 `certbot certonly --standalone` 会注册证书，后续 `certbot renew` 命令会根据该注册信息更新
+
+`--dry-run` 参数会以测试环境来执行，以防出现太多异常错误。
 
 之后就是照着提示一步一步操作下去，这个方法需要关闭 web 服务器一段时间，因为需要监听 80 端口。
 
@@ -143,6 +145,11 @@ certbot certonly --standalone
 
 如果不想在默认目录使用证书，把证书搬到我们要使用的目录即可。
 
+## 问题解决
+
+如果遇到无法解决的问题，试试加上 `--debug-challenges`，他会在开始挑战前停下，你可以访问给你的网址，看看是否符合预期。
+
+我就遇到工信部备案问题。
 
 ##### 更新证书
 
@@ -182,3 +189,4 @@ certbot certificates
 6. [How to issue a cert](https://github.com/acmesh-official/acme.sh/wiki/How-to-issue-a-cert)
 7. [acme.sh简单教程](https://blog.csdn.net/Dancen/article/details/121044863)
 8. [certbot instructions other on centos7](https://certbot.eff.org/instructions?ws=other&os=centosrhel7)
+9. [Certbot standalone insists on IPv6, not able to bind to IPv4, fails authorization procedure](https://community.letsencrypt.org/t/certbot-standalone-insists-on-ipv6-not-able-to-bind-to-ipv4-fails-authorization-procedure/188748/5)
